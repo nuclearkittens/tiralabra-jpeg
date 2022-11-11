@@ -1,0 +1,8 @@
+/src/__pycache__/
+/src/.vscode/
+/src/.venv/
+/src/**/__pycache__/
+
+.pytest_cache/
+.coverage
+htmlcov/

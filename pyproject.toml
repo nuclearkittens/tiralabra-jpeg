@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "tiralabra-jpeg"
+version = "0.1.0"
+description = "course project for data structures and algorithms lab, autumn 2022, uni of helsinki"
+authors = ["meri saynatkari <meri.saynatkari@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+invoke = "^1.7.3"
+numpy = "^1.23.4"
+scipy = "^1.9.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.2.0"
+pylint = "^2.15.5"
+coverage = "^6.5.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
