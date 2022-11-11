@@ -4,4 +4,8 @@ This repository contains project work for the University of Helsinki Data Struct
 
 ## Weekly reports
 
++ [week 1+2](https://github.com/nuclearkittens/tiralabra-jpeg/blob/main/documentation/weekly-reports/week-1-2.md)
+
 ## Documentation
+
++ [project specification](https://github.com/nuclearkittens/tiralabra-jpeg/blob/main/documentation/specification.md)

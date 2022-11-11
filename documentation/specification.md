@@ -1,4 +1,4 @@
-# PROJECT SPECIICATION
+# PROJECT SPECIFICATION
 This project focusses on the lossless image compression format JPEG. The aim is to create an application that performs the steps included in image compression in an efficient manner.
 
 + **Degree programme:** BSc in Computer Science (tkt-kandi)
