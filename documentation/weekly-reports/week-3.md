@@ -12,7 +12,7 @@ So, as a photographer, I mainly work with RAW images (namely, CR2). RAW images t
 
 Secondly, the RBG to YCbCr conversion took way more time than I thought. My linear algebra is rusty, so matrix revision was needed, as well as time for understanding the conversion formulas. Furthermore, halfway through figuring it out it struck me that having a image object class would make more sense than just separate functions, so yay refactoring!
 
-Docstring & Pylint (& codetags) are in use, so everything should be readable.
+Docstring & Pylint (& codetags) are in use, so everything should be readable; first unit tests are done as well and coverage configured – latest coverage report [here](documentation/assets/coverage-2022-11-19-19-49-47.png). Using Poetry & invoke, so these can be run with ```poetry run invoke lint```, ```poetry run invoke test```, and ```poetry run invoke coverage-report``` respectively.
 
 ## This week I learnt...
 
@@ -21,7 +21,7 @@ Not the main focus of this course/project, but getting more familiar with NumPy 
 ## Questions, problems, and such
 Is it enough to convert only RGB to YCbCr, or do I need to figure out how to convert true grayscale images too? I mean, it would be interesting to see the difference in compression between the two.
 
-As for the demo on exam week(?), any possibilities to participate remotely? If not, would be good to get at least the date asap, as I live abroad and need to book flights if I gotta be in Helsinki...
+As for the demo on exam week(?), any possibilities to participate remotely? If not, would be good to get at least the date asap, as I live abroad and need to book flights.
 
 ## What next?
 

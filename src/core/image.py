@@ -29,15 +29,15 @@ class ImageArray:
         as per ITU-T Rec 871.'''
         if self._mode == 'RGB':
             self._rgb2ycbcr()
+            self._mode = 'YCbCr'
         # elif self._mode == 'L':
         #     self._gray2ycbcr()
         else:
             print('image mode is not RGB')
-            return
-        self._mode = 'YCbCr'
+        return self._mode
 
     def _rgb2ycbcr(self):
-        rgb = self._im.astype(np.float)
+        rgb = self._im.astype(np.float32)
         ycbcr = rgb.dot(COLOUR_MATRIX)
         ycbcr[:,:,[1,2]] += K
         self._im = ycbcr.astype(np.uint8)
@@ -58,7 +58,7 @@ class ImageArray:
         if self._mode != 'YCbCr':
             print('image mode is not YCbCr')
             return
-        ycbcr = self._im.astype(np.float)
+        ycbcr = self._im.astype(np.float32)
         ycbcr[:,:,[1,2]] -= K
         rgb = ycbcr.dot(np.linalg.inv(COLOUR_MATRIX))
         np.putmask(rgb, rgb>MAXVAL, MAXVAL)
