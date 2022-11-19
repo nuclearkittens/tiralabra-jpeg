@@ -1,5 +1,5 @@
 '''Image class module.'''
-from config import COLOUR_MATRIX, K
+from config import COLOUR_MATRIX, K, MINVAL, MAXVAL
 
 import numpy as np
 from PIL import Image
@@ -24,19 +24,55 @@ class ImageArray:
         return np.array(im)
 
     def rgb2ycbcr(self):
+        # TODO: handling grayscale imgs
         '''Convert RGB image array to YCbCr colour space,
         as per ITU-T Rec 871.'''
-        rgb = self._im.astype(np.float32)
+        if self._mode == 'RGB':
+            self._rgb2ycbcr()
+        # elif self._mode == 'L':
+        #     self._gray2ycbcr()
+        else:
+            print('image mode is not RGB')
+            return
+        self._mode = 'YCbCr'
+
+    def _rgb2ycbcr(self):
+        rgb = self._im.astype(np.float)
         ycbcr = rgb.dot(COLOUR_MATRIX)
         ycbcr[:,:,[1,2]] += K
         self._im = ycbcr.astype(np.uint8)
-        self._mode = 'YCbCr'
+
+    def _gray2ycbcr(self):
+        # TODO
+        # dummy channels for Cb and Cr
+        # use this if mode == 'L'
+        pass
 
     def ycbcr2rgb(self):
-        pass
+        # TODO: deal w/ grayscale imgs?
+        # find a workaround for np.putmask (preferably
+        # in reasonable time; this is to deal with
+        # oversaturated pixels, basically a solution to
+        # min(max(0, round(ycbcr)), 255))
+        '''Convert YCbCr image array to RGB colour space,
+        as per ITU-T Rec 871.'''
+        if self._mode != 'YCbCr':
+            print('image mode is not YCbCr')
+            return
+        ycbcr = self._im.astype(np.float)
+        ycbcr[:,:,[1,2]] -= K
+        rgb = ycbcr.dot(np.linalg.inv(COLOUR_MATRIX))
+        np.putmask(rgb, rgb>MAXVAL, MAXVAL)
+        np.putmask(rgb, rgb<MINVAL, MINVAL)
+        self._im = rgb.astype(np.uint8)
+        self._mode = 'RGB'
 
     def save_jpeg(self, fpath):
         pass
+
+    def plot(self):
+        '''Display the PIL image.'''
+        self.im.show()
 
     @property
     def im(self):
@@ -48,7 +84,7 @@ class ImageArray:
 
     @property
     def imarray(self):
-        '''Numpy array representation of the image.'''
+        '''NumPy array representation of the image.'''
         return self._im
 
     @property

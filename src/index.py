@@ -1,26 +1,24 @@
-import numpy as np
-from PIL import Image
+# import numpy as np
+# from PIL import Image
 
-from config import COLOUR_MATRIX
-from core.util import rgb2ycbcr, array2im
+# from config import COLOUR_MATRIX
+from core.image import ImageArray
 
 def main():
-    im = Image.open('src/data/rgb2-1024x1024.tif')
-    # im.show()
-
-    imarray = np.array(im)
-    print(imarray.shape)
-    print(im.size)
-    # print(imarray.dtype)
     # print(COLOUR_MATRIX)
     # print(np.linalg.inv(COLOUR_MATRIX))
 
     # im_ycbcr = np.array(im.convert('YCbCr'))
     # print(im_ycbcr.shape, im_ycbcr.size, im_ycbcr)
-    ycbcr = rgb2ycbcr(imarray)
-    im2 = array2im(ycbcr)
 
-    im2.show()
+    im = ImageArray('src/data/rgb2-1024x1024.tif')
+    im.plot()
+    im.rgb2ycbcr()
+    print(im.mode)
+    im.plot()
+    im.ycbcr2rgb()
+    print(im.mode)
+    im.plot()
 
 
 
