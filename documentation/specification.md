@@ -11,7 +11,7 @@ This project focusses on the lossless image compression format JPEG. The aim is 
 
 When it comes to digital images, one of the most widely-used and popular format is JPEG. JPEG is a lossy compression method (meaning that some of the data in the image is lost), with adjustable degree of compression to manage both image quality and storage size. In this project, I aim to write a program that simulates the different steps used in JPEG image compression.
 
-The JPEG compression can be divided into the encoding and decoding phases, which, similarly can be split into several steps. The steps for encoding are:
+The JPEG compression can be divided into the encoding and decoding phases, which, similarly, can be split into several steps. The steps for encoding are:
 
 + **Colour space transformation and downsampling:** the image is converted from RGB (red, blue, and green channels) to YCbCr (luma, red-difference and blue-difference chroma). The reason behind this is the human ability to see colours, as we are more sensitive to brightness-related colour information (as opposed to hue and saturation). Hence, in YcbCr colour space we can delete some of the less important information (chroma subsampling).
 
