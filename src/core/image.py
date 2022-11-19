@@ -1,8 +1,8 @@
 '''Image class module.'''
-from config import COLOUR_MATRIX, K, MINVAL, MAXVAL
-
 import numpy as np
 from PIL import Image
+
+from config import COLOUR_MATRIX, K, MINVAL, MAXVAL
 
 class ImageArray:
     '''Class for image objects.'''
@@ -43,8 +43,7 @@ class ImageArray:
         self._im = ycbcr.astype(np.uint8)
 
     def _gray2ycbcr(self):
-        # TODO
-        # dummy channels for Cb and Cr
+        # TODO: dummy channels for Cb and Cr
         # use this if mode == 'L'
         pass
 
