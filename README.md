@@ -6,6 +6,7 @@ This repository contains project work for the University of Helsinki Data Struct
 
 + [week 1+2](documentation/weekly-reports/week-1-2.md)
 + [week 3](documentation/weekly-reports/week-3.md)
++ [week 4](documentation/weekly-reports/week-4.md)
 
 ## Documentation
 
