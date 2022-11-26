@@ -4,7 +4,7 @@ import os.path
 from PIL import Image
 
 from config import MINVAL, MAXVAL
-from core.image import ImageArray
+from jpeg.image import ImageArray
 
 def mock_im(fpath):
     '''Create a mock image for testing.'''
