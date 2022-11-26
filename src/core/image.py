@@ -1,11 +1,11 @@
-'''Image class module.'''
-import numpy as np
-from PIL import Image
+# obsolete; functions & methods moved to util
+# will be deleted
 
-from config import COLOUR_MATRIX, K, MINVAL, MAXVAL
+'''Image module.'''
 
 class ImageArray:
     '''Class for image objects.'''
+
     def __init__(self, fpath):
         self._mode = None
         self._im = self._load_im(fpath)
@@ -39,7 +39,7 @@ class ImageArray:
     def _rgb2ycbcr(self):
         rgb = self._im.astype(np.float32)
         ycbcr = rgb.dot(COLOUR_MATRIX)
-        ycbcr[:,:,[1,2]] += K
+        ycbcr[:, :, [1, 2]] += K
         self._im = ycbcr.astype(np.uint8)
 
     def _gray2ycbcr(self):
@@ -59,10 +59,10 @@ class ImageArray:
             print('image mode is not YCbCr')
             return
         ycbcr = self._im.astype(np.float32)
-        ycbcr[:,:,[1,2]] -= K
+        ycbcr[:, :, [1, 2]] -= K
         rgb = ycbcr.dot(np.linalg.inv(COLOUR_MATRIX))
-        np.putmask(rgb, rgb>MAXVAL, MAXVAL)
-        np.putmask(rgb, rgb<MINVAL, MINVAL)
+        np.putmask(rgb, rgb > MAXVAL, MAXVAL)
+        np.putmask(rgb, rgb < MINVAL, MINVAL)
         self._im = rgb.astype(np.uint8)
         self._mode = 'RGB'
 
@@ -72,6 +72,10 @@ class ImageArray:
     def plot(self):
         '''Display the PIL image.'''
         self.im.show()
+
+    def downsample(self):
+        '''4:2:0 chroma subsampling.'''
+        pass
 
     @property
     def im(self):
