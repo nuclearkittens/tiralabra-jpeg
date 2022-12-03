@@ -1,3 +1,4 @@
+'''MCU module.'''
 import numpy as np
 
 class Block():
