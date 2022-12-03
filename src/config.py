@@ -1,6 +1,17 @@
 '''Environmental variables.'''
 import numpy as np
 
+TITLE = 'jpeg convertor project'
+YES = 'y'
+NO = 'n'
+QUIT = 'q'
+
+INSTRUCTIONS = (
+    '\n *this application converts TIFF files to JPEGs*'
+    '\n *currently only the example conversion is available*'
+    '\n *you can quit the application by pressing Q*'
+)
+
 # ITU-R BT.601 conversion
 KR = 0.299
 KG = 0.587
