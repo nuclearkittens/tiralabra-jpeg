@@ -12,7 +12,7 @@ A fairly naïve implementation of chroma subsampling has been implemented. It is
 
 The third implementation uses 2D convolution, which resizes the chroma channels (in comparison to the earlier implementations, which repeated the values to keep the same shape & size). Almost as slow as the first implementation, so I guess this is not functional either.
 
-I was not too happy with the ImageArray class, so (once again) refactoring took way too much time. It is still not how I want it to be (just dumped everything inot utils, ugh), and no new tests have been written nor moved where they should be.
+I was not too happy with the ImageArray class, so (once again) refactoring took way too much time. It is still not how I want it to be (just dumped everything into utils, ugh), and no new tests have been written nor moved where they should be.
 
 Started writing the module for MCUs, but it is very much unfinished and not tested at all. There might be some indexing errors in the padding methods, as I said, not tested as of Sat 26 Nov).
 

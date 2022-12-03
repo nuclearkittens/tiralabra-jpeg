@@ -2,7 +2,7 @@ import timeit
 # import numpy as np
 # from PIL import Image, ImageChops
 
-import core.util as util
+import jpeg.util as util
 
 def main():
     # read an image and convert it from RGB to YCbCr

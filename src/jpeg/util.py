@@ -1,4 +1,4 @@
-'''A module for utility functions.'''
+'''A module for image utility functions.'''
 import numpy as np
 from PIL import Image, ImageChops
 
@@ -63,6 +63,8 @@ def show_im(im):
     Image.fromarray(im).show()
 
 def downsample(cb, cr):
+    # slow, not in use
+    # left in here for posterioty's sake
     '''4:2:0 chroma subsampling.
 
     args:
@@ -79,22 +81,42 @@ def downsample(cb, cr):
             cr_new[i:i+2, j:j+2] = np.mean(cb[i:i+2, j:j+2])
     return np.round(cb_new).astype('uint8'), np.round(cr_new).astype('uint8')
 
-def ds2(cb, cr):
+def downsample2(cb, cr):
     # another try at subsampling
-    def _ds(mat):
+    # fastest (according to timeit), so currently
+    # this version is in use
+    '''4:2:0 chroma subsampling.
+
+    args:
+        cb, cr: chroma channels in NxM matrix presentation
+
+    return:
+        subsampled chroma channels in NxM matrix presentation
+    '''
+    def _downsample(mat):
         mat2 = mat.copy()
         mat2[1::2,:] = mat2[::2,:]
         mat2[:,1::2] = mat2[:,::2]
         return mat2
-    return _ds(cb), _ds(cr)
+    return _downsample(cb), _downsample(cr)
 
-def ds3(cb, cr):
-    '''Another version of downsampling, using 2D convolution.'''
+def downsample3(cb, cr):
+    # slower than anticipated, not in use
+    # left here just because writing the conv2d
+    # function was a pain
+    '''4:2:0 chroma subsampling. Uses 2D convolution.
+
+    args:
+        cb, cr: chroma channels in NxM matrix presentation
+
+    return:
+        subsampled chroma channels in NxM matrix presentation
+    '''
     ker = np.array([[.25, .25], [.25, .25]])
     return conv2d(cb, ker, stride=2), conv2d(cr, ker, stride=2) 
 
 def conv2d(im, kernel, stride=1, pad=0):
-    '''"2D convolution.
+    '''2D convolution.
 
     args:
         im: matrix (NumPy array) representing single colour channel
