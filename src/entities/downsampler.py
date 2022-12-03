@@ -12,12 +12,12 @@ class Downsampler:
             cb, cr: chroma channels in NxM matrix presentation
             method: 0, 1, or 2; method of downsampling
         '''
-        if method == 1:
+        if method == 0:
+            cb, cr = self._ds(cb), self._ds(cr)
+        elif method == 1:
             cb, cr = self._ds1(cb, cr)
         elif method == 2:
             cb, cr = self._ds2(cb, cr)
-        else:
-            cb, cr = self._ds(cb), self._ds(cr)
         return cb, cr
 
     def _ds1(self, cb, cr):

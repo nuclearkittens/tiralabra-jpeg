@@ -11,7 +11,8 @@ class Block():
     def __init__(self, h=8, w=8):
         self._h = h
         self._w = w
-        self._vpad = self._hpad = 0
+        self._vpad = 0
+        self._hpad = 0
 
     def split_blocks(self, im):
         '''Split an image matrix into blocks.
@@ -23,15 +24,15 @@ class Block():
             blocks: ndarray: block pixel and colour channel data
             idx: ndarray: block coordinate data
         '''
-        h, w, im = self.pad(im.shape[0], im.shape[1], im)
-        channels = im.shape[2]
+        im = self.pad(im)
+        h, w, chs = im.shape
 
         blocks = []
         idx = []
 
         for j in range(0, h, self._h):
             for i in range(0, w, self._w):
-                for ch in range(channels):
+                for ch in range(chs):
                     blocks.append(im[j:j+self._h, i:i+self._w, ch])
                     idx.append((j, i, ch))
 
@@ -42,16 +43,24 @@ class Block():
         '''Reconstruct the image from MCUs.'''
         pass
 
-    def pad(self, h, w, im):
-        '''Add padding to image if dimensions are not 8Nx8M.'''
+    def _check_pad(self, h, w):
         vpad = h % self._h
         hpad = w % self._w
         if vpad != 0:
-            im = self._vertical_pad(vpad, im)
+            self._vpad = vpad
         if hpad != 0:
-            im = self._horizontal_pad(hpad, im)
-        h, w = im.shape[0], im.shape[1]
-        return h, w, im
+            self._hpad = hpad
+
+    def pad(self, im):
+        '''Add padding to image if dimensions are not 8Nx8M.'''
+        h, w, _ = im.shape
+        self._check_pad(h, w)
+
+        if self._vpad:
+            im = self._vertical_pad(self._vpad, im)
+        if self._hpad:
+            im = self._horizontal_pad(self._hpad, im)
+        return im
 
     def remove_pad(self, im):
         '''Remove padding from reconstructed image.'''
@@ -65,9 +74,19 @@ class Block():
     def _vertical_pad(self, pad, im):
         '''Add vertical padding by repeating last column of the image.'''
         self._vpad = pad
-        return np.vstack((im, np.tile(im[-1], pad)))
+        new_im = []
+        for i in range(im.shape[2]):
+            ch = im[:,:,i]
+            ch = np.hstack((ch, np.tile(ch[:,[-1]], pad)))
+            new_im.append(ch)
+        return np.dstack(tuple(new_im))
 
     def _horizontal_pad(self, pad, im):
         '''Add horizontal padding by repeating last row of the image.'''
         self._hpad = pad
-        return np.hstack((im, np.tile(im[:, [-1]], pad)))
+        new_im = []
+        for i in range(im.shape[2]):
+            ch = im[:,:,i]
+            ch = np.vstack((ch, np.tile(im[[-1]], pad)))
+            new_im.append(ch)
+        return np.dstack(tuple(new_im))

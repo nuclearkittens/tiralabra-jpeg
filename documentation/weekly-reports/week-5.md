@@ -8,8 +8,16 @@ Not a lot of progress this week, which is slightly disappointing. Took some time
 
 For ease of use, I wrote a simple command line UI to run the application. Currently, it is not fully functional, but runs the example up until chroma subsampling.
 
+Unit tests are still lacking (and there is no testing report yet, sorry). Currently trying to understand what is happening in the block module, as I have definitely messed up the padding somehow ':D'
+
 ## This week I learnt...
+
+Code review was good, has been a while since I have not just read but also commented someone else's code.
 
 ## Questions, problems, and such
 
+Everything is a problem ahaha. Jk, I know I am a bit behind but not feeling overwhelmed anymore at least. I'm gonna figure this out.
+
 ## What next?
+
+Get the block module to work (yes, still working on that), testing & documentation,  and. Then. Finally DCT.
