@@ -19,4 +19,11 @@ def conv2d(im, kernel, stride=1, pad=0):
     res_h = (im_h-ker_h) // stride+1
     res_w = (im_w-ker_w) // stride+1
     res = np.zeros((res_h, res_w)).astype(np.float32)
-    return res
+
+    for j in range(res_h):
+        for i in range(res_w):
+            res[j][i] = np.sum(
+                im[j*stride:j*stride+ker_h, i*stride:i*stride+ker_w]*kernel
+            ).astype(np.float32)
+
+    return res.astype(np.uint8)
