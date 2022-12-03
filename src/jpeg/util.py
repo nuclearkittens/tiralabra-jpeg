@@ -113,7 +113,7 @@ def downsample3(cb, cr):
         subsampled chroma channels in NxM matrix presentation
     '''
     ker = np.array([[.25, .25], [.25, .25]])
-    return conv2d(cb, ker, stride=2), conv2d(cr, ker, stride=2) 
+    return conv2d(cb, ker, stride=2), conv2d(cr, ker, stride=2)
 
 def conv2d(im, kernel, stride=1, pad=0):
     '''2D convolution.

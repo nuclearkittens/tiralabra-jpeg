@@ -64,9 +64,9 @@ class Block():
     def _vertical_pad(self, pad, im):
         '''Add vertical padding by repeating last column of the image.'''
         self._vpad = pad
-        return np.vstack(im, np.tile(im[-1], pad))
+        return np.vstack((im, np.tile(im[-1], pad)))
 
     def _horizontal_pad(self, pad, im):
         '''Add horizontal padding by repeating last row of the image.'''
         self._hpad = pad
-        return np.hstack(im, np.tile(im[:, [-1]], pad))
+        return np.hstack((im, np.tile(im[:, [-1]], pad)))
