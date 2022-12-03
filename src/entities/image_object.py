@@ -77,13 +77,7 @@ class ImageObject:
         ch3 = self._im[:,:,2] # Cr or B
         return ch1, ch2, ch3
 
-    def downsample(self, method=0):
-        '''Downsample the image.'''
-        y, cb, cr = self.get_channels()
-        cb, cr = self._ds.downsample(cb, cr, method)
-        self._im.compile_im(y, cb, cr)
-
-    def compile_im(ch1, ch2, ch3):
+    def compile_im(self, ch1, ch2, ch3):
         '''Compile RGB or YCbCr image from individual channels.
 
         args:
