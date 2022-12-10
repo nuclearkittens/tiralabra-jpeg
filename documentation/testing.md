@@ -9,7 +9,8 @@ Downsampler and ImageObject classes are tested, Block class mostly done.
 Unit tests for the utility functions (mostly maths) are not included yet, but I will test them, possibly against in-built functions to check the maths are correct.
 
 Coverage Sat Dec 10th, 2022:
-![Screenshot of coverage report, showing 74% overall coverage](documentation/assets/coverage-022-12-10-22-27-25.png)
+
+![Screenshot of coverage report, showing 74% overall coverage](documentation/assets/coverage-2022-12-10-22-27-25.png)
 
 
 ## Manual testing
