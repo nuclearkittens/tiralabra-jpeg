@@ -10,7 +10,7 @@ Unit tests for the utility functions (mostly maths) are not included yet, but I 
 
 Coverage Sat Dec 10th, 2022:
 
-![Screenshot of coverage report, showing 74% overall coverage](documentation/assets/coverage-2022-12-10-22-27-25.png)
+![Screenshot of coverage report, showing 74% overall coverage](assets/coverage-2022-12-10-22-27-25.png)
 
 
 ## Manual testing
