@@ -1,4 +1,4 @@
-# WEEKLY REPORT 5
+# WEEKLY REPORT 6
 
 To be completely honest, I was very much ready to drop the whole course and abandon this project. So I guess it is no wonder I am still behind.
 
