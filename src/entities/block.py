@@ -1,4 +1,6 @@
 '''MCU module.'''
+# TODO: add image as property
+
 import numpy as np
 
 class Block():
@@ -26,6 +28,7 @@ class Block():
         '''
         im = self.pad(im)
         h, w, chs = im.shape
+        self._imsize = im.shape
 
         blocks = []
         idx = []
@@ -33,17 +36,27 @@ class Block():
         for j in range(0, h, self._h):
             for i in range(0, w, self._w):
                 for ch in range(chs):
+                    print(f'j: {j}, i: {i}, ch: {ch}')
+                    print(f'block: {im[j:j+self._h, i:i+self._w, ch]}')
                     blocks.append(im[j:j+self._h, i:i+self._w, ch])
                     idx.append((j, i, ch))
 
         return np.array(blocks), np.array(idx)
 
     def reconstruct_im(self, blocks, idx):
-        #TODO
         '''Reconstruct the image from MCUs.'''
-        pass
+        im = np.zeros(self._imsize)
+
+        for block, ind in zip(blocks, idx):
+            j, i, ch = ind
+            im[j:j+self._h, i:i+self._w, ch] = block
+
+        im = self.remove_pad(im)
+        return im
+
 
     def _check_pad(self, h, w):
+        '''Check whether image needs padding.'''
         vpad = h % self._h
         hpad = w % self._w
         if vpad != 0:

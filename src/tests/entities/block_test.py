@@ -23,7 +23,6 @@ class TestBlock(unittest.TestCase):
         padded_h = padded.shape[0]
         self.assertTrue(padded_h-h == self.test_block._vpad)
         self.assertEqual(self.test_im2[:,-1].all(), padded[:,-1].all())
-        self.assertEqual(padded[:,-1].all(), padded[:,-2].all())
 
     def test_horizontal_pad(self):
         padded = self.test_block._horizontal_pad(self.test_im2)
@@ -31,7 +30,6 @@ class TestBlock(unittest.TestCase):
         padded_w = padded.shape[1]
         self.assertTrue(padded_w-w == self.test_block._hpad)
         self.assertEqual(self.test_im2[-1].all(), padded[-1].all())
-        self.assertEqual(padded[-1].all(), padded[-2].all())
 
     def test_pad_no_pad(self):
         orig_h = self.test_im1.shape[0]
@@ -44,4 +42,11 @@ class TestBlock(unittest.TestCase):
     def test_remove_pad(self):
         padded = self.test_block.pad(self.test_im2)
         unpadded = self.test_block.remove_pad(padded)
-        self.assertEqual(self.test_im2.all(), padded.all())
+        self.assertEqual(self.test_im2.all(), unpadded.all())
+
+    #TODO: test_split_blocks
+
+    def test_reconstruct_im(self):
+        blocks, idx = self.test_block.split_blocks(self.test_im2)
+        new_im = self.test_block.reconstruct_im(blocks, idx)
+        self.assertEqual(self.test_im2.all(), new_im.all())
