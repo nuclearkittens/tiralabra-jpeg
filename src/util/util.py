@@ -1,4 +1,5 @@
 import numpy as np
+from math import sqrt, cos, pi
 
 def conv2d(im, kernel, stride=1, pad=0):
     '''"2D convolution.
@@ -27,3 +28,78 @@ def conv2d(im, kernel, stride=1, pad=0):
             ).astype(np.float32)
 
     return res.astype(np.uint8)
+
+def dct2d_slow(arr):
+    '''Naïve method of discrete cosine transform for 2D arrays.'''
+    def alpha(u):
+        '''Normalisation of a scalar.'''
+        return 1/sqrt(2) if u == 0 else 1
+
+    res = np.zeros_like(arr)
+    for u in range(res.shape[0]):
+        for v in range(res.shape[1]):
+            scalar = .25 * alpha(u) * alpha(v)
+            val = float(0)
+            for i in range(arr.shape[0]):
+                for j in range(arr.shape[1]):
+                    pixel_val = arr[i, j]
+                    cos_x = cos((2*i+1) * u * pi / 16)
+                    cos_y = cos((2*j+1) * v * pi / 16)
+                    val += pixel_val * cos_x * cos_y
+            res[u, v] = scalar * val
+
+    return res
+
+def dft(x):
+    '''Discrete Fourier Transform.'''
+    x = np.asarray(x, dtype=np.float32)
+    n = x.shape[0]
+    m = np.arange(n)
+    k = m.reshape((n, 1))
+    a = np.exp(-2j * pi * k * m / n)
+    return np.dot(a, x)
+
+def fft(x):
+    '''Fast Fourier Transformation using recursion.'''
+    x = np.asarray(x, dtype=np.float32)
+    n = x.shape[0]
+
+    if n % 2 > 0:
+        raise ValueError('n must be a power of two')
+    elif n <= 2:
+        return dft(x)
+    else:
+        even = fft(x[::2])
+        odd = fft(x[1::2])
+        a = np.exp(-2j * pi * np.arange(n) / 2)
+        i = np.uint8(n/2)
+        return np.concatenate([
+            even + a[:i] * odd,
+            even + a[i:] * odd
+        ])
+
+def dct(x):
+    '''1D DCT-II.'''
+    n = x.shape[0]
+    x_2 = np.empty(2*n, np.float32)
+    x_2[:n] = x[:]
+    x_2[n:] = x[::-1]
+
+    transform = fft(x_2)
+    phi = np.exp(-1j * pi * np.arange(n) / ( 2*n))
+
+    return np.real(phi * transform[:n])
+
+def dct2d(arr):
+    '''2D DCT-II.'''
+    m, n = arr.shape
+    a = np.empty([m, n], np.float32)
+    x = np.empty([m, n], np.float32)
+
+    for i in range(m):
+        a[i,:] = dct(arr[i,:])
+
+    for j in range(n):
+        x[:,j] = dct(a[:,j])
+
+    return x
