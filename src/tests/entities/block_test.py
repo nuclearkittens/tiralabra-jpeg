@@ -19,7 +19,7 @@ class TestBlock(unittest.TestCase):
 
     def test_vertical_pad(self):
         pad = 1
-        padded = self.test_block._vertical_pad(pad, self.test_im1)
+        padded = self.test_block._vertical_pad(self.test_im1)
         h = self.test_im1.shape[0]
         padded_h = padded.shape[0]
         self.assertTrue(padded_h-h == self.test_block._vpad)
@@ -28,11 +28,11 @@ class TestBlock(unittest.TestCase):
 
     def test_horizontal_pad(self):
         pad = 1
-        padded = self.test_block._horizontal_pad(pad, self.test_im1)
+        padded = self.test_block._horizontal_pad(self.test_im1)
         w = self.test_im1.shape[1]
         padded_w = padded.shape[1]
-        # self.assertTrue(padded_w-w == self.test_block._hpad)
-        # self.assertEqual(self.test_im1[-1].all(), padded[-1].all())
+        self.assertTrue(padded_w-w == self.test_block._hpad)
+        self.assertEqual(self.test_im1[-1].all(), padded[-1].all())
         self.assertEqual(padded[-1].all(), padded[-2].all())
 
     def test_pad_no_pad(self):

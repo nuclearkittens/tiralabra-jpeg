@@ -57,9 +57,9 @@ class Block():
         self._check_pad(h, w)
 
         if self._vpad:
-            im = self._vertical_pad(self._vpad, im)
+            im = self._vertical_pad(im)
         if self._hpad:
-            im = self._horizontal_pad(self._hpad, im)
+            im = self._horizontal_pad(im)
         return im
 
     def remove_pad(self, im):
@@ -71,22 +71,24 @@ class Block():
             im = im[:,:-self._vpad,:]
             self._vpad = 0
 
-    def _vertical_pad(self, pad, im):
+    def _vertical_pad(self, im):
         '''Add vertical padding by repeating last column of the image.'''
-        self._vpad = pad
-        new_im = []
-        for i in range(im.shape[2]):
-            ch = im[:,:,i]
-            ch = np.hstack((ch, np.tile(ch[:,[-1]], pad)))
-            new_im.append(ch)
-        return np.dstack(tuple(new_im))
+        # self._vpad = pad
+        # new_im = []
+        # for i in range(im.shape[2]):
+        #     ch = im[:,:,i]
+        #     ch = np.hstack((ch, np.tile(ch[:,[-1]], pad)))
+        #     new_im.append(ch)
+        # return np.dstack(tuple(new_im))
+        return np.concatenate((im, np.repeat(im[-1:], self._vpad, 0)), axis=0)
 
-    def _horizontal_pad(self, pad, im):
+    def _horizontal_pad(self, im):
         '''Add horizontal padding by repeating last row of the image.'''
-        self._hpad = pad
-        new_im = []
-        for i in range(im.shape[2]):
-            ch = im[:,:,i]
-            ch = np.vstack((ch, np.tile(im[[-1]], pad)))
-            new_im.append(ch)
-        return np.dstack(tuple(new_im))
+        # self._hpad = pad
+        # new_im = []
+        # for i in range(im.shape[2]):
+        #     ch = im[:,:,i]
+        #     ch = np.vstack((ch, np.tile(im[[-1]], pad)))
+        #     new_im.append(ch)
+        # return np.dstack(tuple(new_im))
+        return np.concatenate((im, np.repeat(im[:,-1:], self._hpad, 1)), axis=1)
