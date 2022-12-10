@@ -47,9 +47,9 @@ class Block():
         vpad = h % self._h
         hpad = w % self._w
         if vpad != 0:
-            self._vpad = vpad
+            self._vpad = self._h - vpad
         if hpad != 0:
-            self._hpad = hpad
+            self._hpad = self._w - hpad
 
     def pad(self, im):
         '''Add padding to image if dimensions are not 8Nx8M.'''
@@ -70,6 +70,7 @@ class Block():
         if self._vpad > 0:
             im = im[:,:-self._vpad,:]
             self._vpad = 0
+        return im
 
     def _vertical_pad(self, im):
         '''Add vertical padding by repeating last column of the image.'''
