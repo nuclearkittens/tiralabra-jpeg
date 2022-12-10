@@ -14,3 +14,4 @@ This repository contains project work for the University of Helsinki Data Struct
 
 + [project specification](documentation/specification.md)
 + [testing document](documtentation/testing.md)
++ [user manual](documentation/manual.md)

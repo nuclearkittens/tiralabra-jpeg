@@ -25,12 +25,12 @@ class App:
         while self._running:
             prompt = '\nrun the example (y/n)?: '
             cmd = self._io.read(prompt)
-            if cmd == YES:
+            if cmd.lower() == YES:
                 self._io.write('\nrunning example...')
                 self._example.run()
-            elif cmd == NO:
+            elif cmd.lower() == NO:
                 self._run()
-            elif cmd == QUIT:
+            elif cmd.lower() == QUIT:
                 self._quit()
             else:
                 self._io.write('\ninvalid input!')

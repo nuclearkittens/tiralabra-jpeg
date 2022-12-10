@@ -44,7 +44,7 @@ class Example:
 
     def _show_im(self):
         cmd = self._io.read('show image (y/n)?: ')
-        if cmd == YES:
+        if cmd.lower() == YES:
             self._im.show()
 
     def _print_im_info(self):
