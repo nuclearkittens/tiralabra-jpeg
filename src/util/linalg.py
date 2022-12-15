@@ -1,5 +1,7 @@
-import numpy as np
+'''Module for linear algebra utility functions.'''
+
 from math import sqrt, cos, pi
+import numpy as np
 
 def conv2d(im, kernel, stride=1, pad=0):
     '''"2D convolution.
@@ -66,7 +68,8 @@ def fft(x):
 
     if n % 2 > 0:
         raise ValueError('n must be a power of two')
-    elif n <= 2:
+
+    if n <= 2:
         return dft(x)
     else:
         even = fft(x[::2])

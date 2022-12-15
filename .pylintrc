@@ -272,7 +272,14 @@ good-names=i,
            r,
            g,
            b,
-           im
+           im,
+           io,
+           a,
+           x,
+           u,
+           v,
+           n,
+           m
 
 # Include a hint for the correct naming format with invalid-name.
 include-naming-hint=no

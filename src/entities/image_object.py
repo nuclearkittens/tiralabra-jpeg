@@ -89,14 +89,16 @@ class ImageObject:
         '''
         return np.dstack((ch1, ch2, ch3))
 
-    def imdiff(im1, im2):
+    def imdiff(self, im1, im2):
         '''Difference of two PIL images.'''
         return ImageChops.difference(im1, im2)
 
     @property
     def im(self):
+        '''Return the image as array.'''
         return self._im
 
     @property
     def mode(self):
+        '''Return colour mode.'''
         return self._mode

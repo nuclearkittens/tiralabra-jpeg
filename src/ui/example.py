@@ -5,6 +5,7 @@ from config import YES
 
 
 class Example:
+    '''JPEG conversion example script.'''
     def __init__(self, io, im, downsampler, block):
         self._io = io
         self._im = im
@@ -12,6 +13,7 @@ class Example:
         self._block = block
 
     def run(self):
+        '''Run the example.'''
         self._io.write('\nloading test image: src/data/rgb2-1024x1024.tif')
         self._show_im()
         self._print_im_info()
