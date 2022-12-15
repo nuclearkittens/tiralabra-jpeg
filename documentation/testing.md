@@ -4,7 +4,7 @@
 
 *to be continued*
 
-Entities (Block, Downsampler, ImageObject) are fully tested, excluding two wrapper methods for Pillow's functionalities.
+Entities (Block, Downsampler, ImageObject) are fully tested.
 
 Unit tests for the utility functions (mostly linear algebra) are tested against built-in functions from NumPy and SciPy libraries.
 

@@ -65,11 +65,6 @@ class ImageObject:
         self._im = rgb.astype(np.uint8)
         self._mode = 'RGB'
 
-    def show(self):
-        # TODO: check colour space is RGB
-        '''Converts an image array to a PIL image and displays it'''
-        Image.fromarray(self._im).show()
-
     def get_channels(self):
         '''Separate the colour channels in RGB or YCbCr image.'''
         ch1 = self._im[:,:,0] # Y or R
@@ -88,10 +83,6 @@ class ImageObject:
             NxMx3 array representation of an image
         '''
         return np.dstack((ch1, ch2, ch3))
-
-    def imdiff(self, im1, im2):
-        '''Difference of two PIL images.'''
-        return ImageChops.difference(im1, im2)
 
     @property
     def im(self):

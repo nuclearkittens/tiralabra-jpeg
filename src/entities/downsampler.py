@@ -1,7 +1,7 @@
 '''Module for downsampling YCbCr images.'''
 import numpy as np
 
-from util.util import conv2d
+from util.linalg import conv2d
 
 class Downsampler:
     '''Downsampler for chroma subsampling.'''
