@@ -35,7 +35,7 @@ def dct2d_slow(arr):
         '''Normalisation of a scalar.'''
         return 1/sqrt(2) if u == 0 else 1
 
-    res = np.zeros_like(arr)
+    res = np.zeros((arr.shape))
     for u in range(res.shape[0]):
         for v in range(res.shape[1]):
             scalar = .25 * alpha(u) * alpha(v)
@@ -52,7 +52,7 @@ def dct2d_slow(arr):
 
 def dft(x):
     '''Discrete Fourier Transform.'''
-    x = np.asarray(x, dtype=np.float32)
+    x = np.asarray(x, dtype=float)
     n = x.shape[0]
     m = np.arange(n)
     k = m.reshape((n, 1))
@@ -61,7 +61,7 @@ def dft(x):
 
 def fft(x):
     '''Fast Fourier Transformation using recursion.'''
-    x = np.asarray(x, dtype=np.float32)
+    x = np.asarray(x, dtype=float)
     n = x.shape[0]
 
     if n % 2 > 0:
@@ -71,8 +71,8 @@ def fft(x):
     else:
         even = fft(x[::2])
         odd = fft(x[1::2])
-        a = np.exp(-2j * pi * np.arange(n) / 2)
-        i = np.uint8(n/2)
+        a = np.exp(-2j * pi * np.arange(n) / n)
+        i = int(n/2)
         return np.concatenate([
             even + a[:i] * odd,
             even + a[i:] * odd
@@ -86,7 +86,7 @@ def dct(x):
     x_2[n:] = x[::-1]
 
     transform = fft(x_2)
-    phi = np.exp(-1j * pi * np.arange(n) / ( 2*n))
+    phi = np.exp(-1j * pi * np.arange(n) / (2*n))
 
     return np.real(phi * transform[:n])
 

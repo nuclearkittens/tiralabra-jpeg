@@ -44,9 +44,12 @@ class TestBlock(unittest.TestCase):
         unpadded = self.test_block.remove_pad(padded)
         self.assertEqual(self.test_im2.all(), unpadded.all())
 
-    #TODO: test_split_blocks
+    def test_remove_pad_no_pad(self):
+        padded = self.test_block.pad(self.test_im1)
+        unpadded = self.test_block.remove_pad(padded)
+        self.assertEqual(self.test_im1.all(), unpadded.all())
 
-    def test_reconstruct_im(self):
+    def test_split_and_reconstruct_im(self):
         blocks, idx = self.test_block.split_blocks(self.test_im2)
         new_im = self.test_block.reconstruct_im(blocks, idx)
         self.assertEqual(self.test_im2.all(), new_im.all())

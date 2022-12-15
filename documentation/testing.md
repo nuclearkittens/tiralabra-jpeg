@@ -4,9 +4,11 @@
 
 *to be continued*
 
-Downsampler and ImageObject classes are tested, Block class mostly done.
+Entities (Block, Downsampler, ImageObject) are fully tested, excluding two wrapper methods for Pillow's functionalities.
 
-Unit tests for the utility functions (mostly maths) are not included yet, but I will test them, possibly against in-built functions to check the maths are correct.
+Unit tests for the utility functions (mostly linear algebra) are tested against built-in functions from NumPy and SciPy libraries.
+
+Everything UI is excluded from automated unit tests.
 
 Coverage Sat Dec 10th, 2022:
 
