@@ -1,11 +1,12 @@
 from ui.app import App
+from ex_v2 import example
 
 def main():
     app = App()
     app.run()
 
 if __name__ == '__main__':
-    main()
+    # main()
     # import numpy as np
     # from timeit import default_timer
     # from entities.block import Block
@@ -29,6 +30,7 @@ if __name__ == '__main__':
     # dct2d(mat)
     # end = default_timer()
     # print(f'dct2 fft/dft: {end-start} s')
+    example()
 
 
 

@@ -26,8 +26,10 @@ class Example:
         y, cb, cr = self._im.get_channels()
         self._io.write('\ndownsampling chroma channels...')
         cb0, cr0 = self._downsample(cb, cr, 0)
-        cb1, cr1 = self._downsample(cb, cr, 1)
-        cb2, cr2 = self._downsample(cb, cr, 2)
+
+        # slow methods:
+        # cb1, cr1 = self._downsample(cb, cr, 1)
+        # cb2, cr2 = self._downsample(cb, cr, 2)
 
         #TODO
 
@@ -43,6 +45,9 @@ class Example:
         self._io.write(f'chroma channels: h: {h}, w: {w}')
         self._io.write(f'subsampling took {time} seconds')
         return new_cb, new_cr
+
+    def _split_blocks(self):
+        pass
 
     def _show_im(self):
         cmd = self._io.read('show image (y/n)?: ')

@@ -2,7 +2,7 @@
 from copy import deepcopy
 
 import numpy as np
-from PIL import Image, ImageChops
+from PIL import Image
 
 from config import COLOUR_MATRIX, K, MINVAL, MAXVAL
 

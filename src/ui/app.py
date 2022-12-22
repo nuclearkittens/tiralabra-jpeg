@@ -1,10 +1,18 @@
 '''Core functionality of the application.'''
-from config import TITLE, INSTRUCTIONS, YES, NO, QUIT
+import numpy as np
+
+from config import TITLE, INSTRUCTIONS, YES, NO, QUIT, LUMA, CHROMA, Y, CB, CR, AC, DC
 from ui.console_io import ConsoleIO
 from ui.example import Example
 from entities.block import Block
 from entities.downsampler import Downsampler
 from entities.image_object import ImageObject
+
+import util.block as blk
+import util.img as img
+from util.linalg import dct2d
+from entities.encoder import Encoder
+from entities.decoder import Decoder
 
 class App:
     '''Handle UI functionality for the command line application.'''
@@ -43,3 +51,46 @@ class App:
         '''Quit the application.'''
         self._io.write('\nquitting app...')
         self._running = False
+
+    def compress(self, fpath, size, quality):
+        '''Compress a TIFF image using the JPEG
+        compression algorithm.'''
+        # load image and convert to array
+        im = img.load_im(fpath)
+        _, orig_h, orig_w = im.shape
+
+        # convert from RGB to YCbCr, downsample, and offset
+        ycbcr = img.rgb2ycbcr(im)
+        y, cb, cr = img.downsample(ycbcr)
+        data = {
+            Y: y,
+            CB: cb,
+            CR: cr
+        }
+        data[Y] = img.offset(y)
+
+        # add padding
+        pad = {}
+        for key, val in data.items():
+            h, w = val.shape
+            vpad, hpad = img.calc_padding(h, w)
+            pad[key] = (vpad, hpad)
+            data[key] = img.pad(val, vpad, hpad)
+
+        # slice into blocks and apply DCT and quantisation
+            data[key] = blk.slice_blocks(data[key])
+            for i, block in enumerate(data[key]):
+                data[key][i] = dct2d(block)
+                data[key][i] = blk.quantise(data[key][i], key, quality=quality)
+
+        # entropy encoding using Huffman and RLE
+        luma = Encoder(data[Y], LUMA).encode()
+        chroma = Encoder(np.vstack((data[CB], data[CR])), CHROMA).encode()
+        encoded = {LUMA: luma, CHROMA: chroma}
+
+        ordered = (
+            encoded[LUMA][DC], encoded[LUMA][AC],
+            encoded[CHROMA][DC], encoded[CHROMA][DC]
+        )
+
+
