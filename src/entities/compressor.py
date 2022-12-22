@@ -4,9 +4,11 @@ from bitarray import bitarray, bits2bytes
 import numpy as np
 
 from config import AC, DC, LUMA, CHROMA, Y, CB, CR
+
 import util.block as blk
 import util.img as img
-from util.linalg import dct2d, idct2d, round_to_nearest_int
+from util.linalg import dct2d, idct2d
+
 from entities.encoder import Encoder
 from entities.decoder import Decoder
 from entities.img import RawImage, CompressedImage
@@ -40,7 +42,7 @@ class Compressor:
     def _preprocess_im(self, fpath):
         '''Load image, convert from RGB to YCbCr and offset
         luma values.'''
-        im = RawImage(fpath)
+        im = RawImage(fpath=fpath)
         _, h, w = im.shape
         self.encoded[DIMS] = (h, w)
 
@@ -97,6 +99,7 @@ class Compressor:
         dequant = self._dequantise(decoded)
 
         im = self._reshape(dequant, padding)
+        return RawImage(im=im)
 
     def _preprocess_compressed(self, bits, filler, slice_len):
         if filler:
@@ -145,6 +148,3 @@ class Compressor:
 
         im = img.stack_channels(*data.values())
         return img.ycbcr2rgb(im)
-
-
-

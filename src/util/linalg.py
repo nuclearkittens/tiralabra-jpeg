@@ -1,13 +1,8 @@
 '''Module for linear algebra utility functions.'''
 
-from math import sqrt, cos, pi, ceil, floor
+from math import sqrt, cos, pi
 import numpy as np
 from scipy.fftpack import idct
-
-def round_to_nearest_int(x):
-    if float(x) % 1 < .5:
-        return floor(x)
-    return ceil(x)
 
 def conv2d(im, kernel, stride=1, pad=0):
     '''"2D convolution.

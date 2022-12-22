@@ -1,14 +1,10 @@
 '''Decoder module for JPEG compression.'''
 import numpy as np
 
-from config import EOB
+from config import EOB, AC, DC, BLOCKSIZE
 import util.huffman as huff
 import util.run_length as rle
 import util.zigzag as zz
-
-DC = 'DC'
-AC = 'AC'
-BLOCKSIZE = 8
 
 class Decoder:
     '''Decoder for JPEG compression.
