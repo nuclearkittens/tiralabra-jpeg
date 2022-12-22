@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 
-from entities.block import Block
+from old.block import Block
 
 class TestBlock(unittest.TestCase):
     def setUp(self):

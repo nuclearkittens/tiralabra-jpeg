@@ -11,8 +11,8 @@ QUIT = 'q'
 Y = 'y'
 CB = 'cb'
 CR = 'cr'
-LUMA = set(Y)
-CHROMA = set(CB, CR)
+LUMA = 'luminance'
+CHROMA = 'chrominance'
 AC = 'AC'
 DC = 'DC'
 

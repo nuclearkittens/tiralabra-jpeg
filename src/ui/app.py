@@ -46,7 +46,7 @@ class App:
         orig_im = RawImage(fpath=fpath)
 
         self._io.write('\nopened original image; compressing to 50% quality')
-        self._show_im(orig_im)
+        self._show_im(orig_im.im)
         self._io.write(f'\nimage size: {orig_im.size} bytes')
         self._io.write(f'\nimage shape: {orig_im.shape}')
 

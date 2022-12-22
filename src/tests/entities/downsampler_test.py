@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 
-from entities.downsampler import Downsampler
+from old.downsampler import Downsampler
 
 class TestDownsampler(unittest.TestCase):
     def setUp(self):

@@ -61,6 +61,7 @@ class Compressor:
             vpad, hpad = img.calc_padding(h, w)
             pad[key] = (vpad, hpad)
             self.data[key] = img.pad(val, vpad, hpad)
+            print(self.data[key].shape)
 
             self.data[key] = blk.slice_blocks(self.data[key])
             for i, block in enumerate(self.data[key]):

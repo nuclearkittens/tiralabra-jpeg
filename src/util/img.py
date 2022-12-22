@@ -56,7 +56,7 @@ def pad(im, vpad, hpad):
         im = _vertical_pad(im, vpad)
     if hpad:
         im = _horizontal_pad(im, hpad)
-    return im, (vpad, hpad)
+    return im
 
 def calc_padding(h, w, blocksize=8):
     '''Check whether image needs padding.'''

@@ -1,5 +1,5 @@
 import numpy as np
-from config import QL, QC, LUMA, CHROMA, BLOCKSIZE
+from config import QL, QC, Y, CB, CR, BLOCKSIZE
 
 def slice_blocks(ch, blocksize=BLOCKSIZE):
     '''Slice a 2D array into N x M blocks.'''
@@ -26,9 +26,9 @@ def quantise(block, mode, quality, inverse=False):
     return:
         (de)quantised block
     '''
-    if mode in LUMA:
+    if mode == Y:
         qtable = QL
-    elif mode in CHROMA:
+    elif mode in (CB, CR):
         qtable = QC
     else:
         raise ValueError('mode has to be either chroma or luma')
