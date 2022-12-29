@@ -45,6 +45,7 @@ class Downsampler:
         # fastest (according to timeit), so currently
         # this version is in use
         '''4:2:0 chroma subsampling.'''
+        # return ch[::2,::2]
         mat = ch.copy()
         mat[1::2,:] = mat[::2,:]
         mat[:,1::2] = mat[:,::2]
