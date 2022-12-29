@@ -14,7 +14,7 @@ def encode_differential(data):
     res = []
     for i, elem in enumerate(data):
         if i:
-            res.append(elem - data[i-1])
+            res.append(elem-data[i-1])
         else:
             res.append(elem)
     return tuple(res)
@@ -51,7 +51,7 @@ def encode_run_length(data):
             res.append((l, groups[i+1][1]))
             borrow_pair = True
         else:
-            res.extend(((0, key), ) * l)
+            res.extend(((0, key),)*l)
 
     return res + [EOB]
 
@@ -59,5 +59,5 @@ def decode_run_length(data):
     '''Decode run-length encoded data and return the
     original values.
     '''
-    res = [elem for l, key in data for elem in [0]*1+[key]]
+    res = (elem for l, k in data for elem in [0]*l+[k])
     return tuple(res)[:-1]

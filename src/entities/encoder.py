@@ -3,8 +3,7 @@ import util.huffman as huff
 import util.run_length as rle
 import util.zigzag as zz
 
-DC = 'DC'
-AC = 'AC'
+from config import DC, AC
 
 class Encoder:
     '''Encoder for JPEG compression.
@@ -26,20 +25,25 @@ class Encoder:
         '''Encode DC and AC using predetermined JPEG
         Huffman tables.'''
         res = {}
-        s = ''
-        for val in self.dc:
-            s += huff.encode(val, self.mode)
-        res[DC] = s
+        # s = ''
+        # for val in self.dc:
+        #     s += huff.encode(val, self.mode)
+        # res[DC] = s
+        for i, val in enumerate(self.dc):
+            if abs(val) >= 2048:
+                print(val, i)
+        res[DC] = ''.join(huff.encode(val, self.mode) for val in self.dc)
 
-        s = ''
-        for val in self.ac:
-            s += huff.encode(val, self.mode)
-        res[AC] = s
+        # s = ''
+        # for val in self.ac:
+        #     s += huff.encode(val, self.mode)
+        # res[AC] = s
+        res[AC] = ''.join(huff.encode(val, self.mode) for val in self.ac)
 
         return res
 
     def _calc_dc(self):
-        self._dc = tuple(rle.encode_differential(self._data[:, 0, 0]))
+        self._dc = tuple(rle.encode_differential(self.data[:, 0, 0]))
 
     def _calc_ac(self):
         self._ac = []

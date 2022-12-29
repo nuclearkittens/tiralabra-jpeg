@@ -3,7 +3,7 @@ from itertools import accumulate
 from bitarray import bitarray, bits2bytes
 import numpy as np
 
-from config import AC, DC, LUMA, CHROMA, Y, CB, CR
+from config import AC, DC, LUMA, CHROMA, Y, CB, CR, BLOCKSIZE
 
 import util.block as blk
 import util.img as img
@@ -37,7 +37,7 @@ class Compressor:
         self._preprocess_im(fpath)
         self._process_blocks()
         self._encode()
-        return CompressedImage(self.encoded[DATA], name)
+        return CompressedImage(self.encoded, name)
 
     def _preprocess_im(self, fpath):
         '''Load image, convert from RGB to YCbCr and offset
@@ -56,17 +56,23 @@ class Compressor:
         '''Add padding, slice the data into blocks and apply
         DCT and quantisation.'''
         pad = {}
-        for key, val in self.data.items():
-            h, w = val.shape
+        for key, ch in self.data.items():
+            h, w = ch.shape
             vpad, hpad = img.calc_padding(h, w)
             pad[key] = (vpad, hpad)
-            self.data[key] = img.pad(val, vpad, hpad)
-            print(self.data[key].shape)
+            self.data[key] = img.pad(ch, vpad, hpad)
+            # self.data[key] = np.pad(
+            #     ch,
+            #     (0, (h//BLOCKSIZE+1)*BLOCKSIZE-h if h%BLOCKSIZE else 0),
+            #     (0, (w//BLOCKSIZE+1)*BLOCKSIZE-w if w%BLOCKSIZE else 0)
+            # )
 
             self.data[key] = blk.slice_blocks(self.data[key])
             for i, block in enumerate(self.data[key]):
                 self.data[key][i] = dct2d(block)
                 self.data[key][i] = blk.quantise(self.data[key][i], key, quality=self.encoded[QLTY])
+
+            self.data[key] = np.rint(self.data[key]).astype(int)
 
         self.encoded[PAD] = pad
 
@@ -78,7 +84,7 @@ class Compressor:
 
         ordered = (
             encoded[LUMA][DC], encoded[LUMA][AC],
-            encoded[CHROMA][DC], encoded[CHROMA][DC]
+            encoded[CHROMA][DC], encoded[CHROMA][AC]
         )
 
         bits = bitarray(''.join(ordered))

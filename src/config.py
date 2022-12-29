@@ -11,10 +11,8 @@ QUIT = 'q'
 Y = 'y'
 CB = 'cb'
 CR = 'cr'
-LUMA = 'luminance'
-CHROMA = 'chrominance'
-AC = 'AC'
-DC = 'DC'
+LUMA = frozenset({Y})
+CHROMA = frozenset({CB, CR})
 
 INSTRUCTIONS = (
     '\n*this application converts TIFF files to JPEGs*'
@@ -61,6 +59,8 @@ QC = np.array([
     [99, 99, 99, 99, 99, 99, 99, 99]
 ])
 
+AC = 'AC'
+DC = 'DC'
 EOB = (0, 0) # end of block
 ZRL = (15, 0) # zero run length
 

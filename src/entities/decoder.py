@@ -24,7 +24,7 @@ class Decoder:
     def decode(self):
         res = {}
         res = np.array(
-            tuple(zz.backward((dc, )+ac, size=BLOCKSIZE)
+            tuple(zz.backward((dc,)+ac, size=BLOCKSIZE)
             for dc, ac in zip(self.dc, self.ac))
         )
         return res

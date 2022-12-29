@@ -41,12 +41,21 @@ class App:
         self._running = False
 
     def example(self):
-        quality = 50
-        fpath = 'src/data/rgb2-1024x1024.tif'
+        ims = ['src/data/test_img.tif', 'src/data/rgb1-1200x1800.tif', 'src/data/rgb2-1024x1024.tif']
+        qs = [70, 50, 10]
+        for im in ims:
+            for q in qs:
+                self._run_example(im, q)
+        self._io.write('\n**example finished**')
+
+    def _run_example(self, fpath, quality):
+        # quality = 50
+        # fpath = 'src/data/test_img.tif'
         orig_im = RawImage(fpath=fpath)
 
-        self._io.write('\nopened original image; compressing to 50% quality')
-        self._show_im(orig_im.im)
+        self._io.write(f'\noriginal image: {fpath}')
+        self._io.write(f'\nopened original image; compressing to {quality} % quality')
+        # self._show_im(orig_im.im)
         self._io.write(f'\nimage size: {orig_im.size} bytes')
         self._io.write(f'\nimage shape: {orig_im.shape}')
 
@@ -57,19 +66,20 @@ class App:
         time = stop - start
         self._io.write(f'\ncompression took {time} seconds')
         self._io.write(f'\nencoded size: {compressed.size} bytes')
+        ratio = compressed.size/orig_im.size
+        self._io.write(f'compression ratio (compressed/orig): {ratio}')
 
-        self._io.write('\decoding image data...')
-        start = timer()
-        im = self._compressor.decompress(compressed)
-        stop = timer()
-        time = stop - start
-        self._show_im(im)
-        self._io.write(f'\ndecompression took {time} seconds')
-        self._io.write(f'\image size: {im.size} bytes')
-        self._io.write(f'\nimage shape: {im.shape}')
+        # self._io.write('\decoding image data...')
+        # start = timer()
+        # im = self._compressor.decompress(compressed)
+        # stop = timer()
+        # time = stop - start
+        # self._show_im(im)
+        # self._io.write(f'\ndecompression took {time} seconds')
+        # self._io.write(f'\image size: {im.size} bytes')
+        # self._io.write(f'\nimage shape: {im.shape}')
 
         #TODO: calc compression ratio
-        self._io.write('\n**example finished**')
 
 
     def _show_im(self, im):

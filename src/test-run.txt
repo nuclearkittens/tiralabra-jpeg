@@ -1,0 +1,154 @@
+jpeg compression algorithm
+
+*this application converts TIFF files to JPEGs*
+*currently only the example conversion is available*
+*you can quit the application by pressing Q*
+
+run the example (y/n)?: y
+
+running example...
+
+original image: src/data/test_img.tif
+
+opened original image; compressing to 70 % quality
+
+image size: 908 bytes
+
+image shape: (16, 16, 3)
+
+encoding...
+
+compression took 0.020370317000924842 seconds
+
+encoded size: 264 bytes
+compression ratio (compressed/orig): 0.2907488986784141
+
+original image: src/data/test_img.tif
+
+opened original image; compressing to 50 % quality
+
+image size: 908 bytes
+
+image shape: (16, 16, 3)
+
+encoding...
+
+compression took 0.01609567899868125 seconds
+
+encoded size: 232 bytes
+compression ratio (compressed/orig): 0.2555066079295154
+
+original image: src/data/test_img.tif
+
+opened original image; compressing to 10 % quality
+
+image size: 908 bytes
+
+image shape: (16, 16, 3)
+
+encoding...
+
+compression took 0.014936194998881547 seconds
+
+encoded size: 128 bytes
+compression ratio (compressed/orig): 0.14096916299559473
+
+original image: src/data/rgb1-1200x1800.tif
+
+opened original image; compressing to 70 % quality
+
+image size: 6629950 bytes
+
+image shape: (1800, 1200, 3)
+
+encoding...
+
+compression took 125.35022044099969 seconds
+
+encoded size: 2100632 bytes
+compression ratio (compressed/orig): 0.3168397951719093
+
+original image: src/data/rgb1-1200x1800.tif
+
+opened original image; compressing to 50 % quality
+
+image size: 6629950 bytes
+
+image shape: (1800, 1200, 3)
+
+encoding...
+
+compression took 124.05122036600005 seconds
+
+encoded size: 1751308 bytes
+compression ratio (compressed/orig): 0.2641510116969208
+
+original image: src/data/rgb1-1200x1800.tif
+
+opened original image; compressing to 10 % quality
+
+image size: 6629950 bytes
+
+image shape: (1800, 1200, 3)
+
+encoding...
+
+compression took 118.1121632300019 seconds
+
+encoded size: 384704 bytes
+compression ratio (compressed/orig): 0.05802517364384347
+
+original image: src/data/rgb2-1024x1024.tif
+
+opened original image; compressing to 70 % quality
+
+image size: 3359506 bytes
+
+image shape: (1024, 1024, 3)
+
+encoding...
+
+compression took 60.395067002998985 seconds
+
+encoded size: 1014844 bytes
+compression ratio (compressed/orig): 0.3020813179080496
+
+original image: src/data/rgb2-1024x1024.tif
+
+opened original image; compressing to 50 % quality
+
+image size: 3359506 bytes
+
+image shape: (1024, 1024, 3)
+
+encoding...
+
+compression took 60.515014724998764 seconds
+
+encoded size: 846080 bytes
+compression ratio (compressed/orig): 0.25184655124890387
+
+original image: src/data/rgb2-1024x1024.tif
+
+opened original image; compressing to 10 % quality
+
+image size: 3359506 bytes
+
+image shape: (1024, 1024, 3)
+
+encoding...
+
+compression took 58.20207079099782 seconds
+
+encoded size: 197464 bytes
+compression ratio (compressed/orig): 0.05877768933884922
+
+**example finished**
+
+run the example (y/n)?: n
+
+only example available!
+
+run the example (y/n)?: q
+
+quitting app...

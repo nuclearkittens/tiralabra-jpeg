@@ -31,16 +31,16 @@ def backward(data, size, fill):
     '''Reconstruct a matrix from an array.'''
     n = len(data)
     if not size:
-        size = _next_square(len(data))
+        size = _next_square(n)
 
-    data = tuple(data) + (fill, ) * (size**2-n)
+    data = tuple(data)+(fill,)*(size**2-n)
     res = np.empty((size, size), dtype=int)
     i = 0
     j = 0
 
     for val in data:
         res[j][i] = val
-        if (i+j) % 2 == 1:
+        if (i+j)%2 == 1:
             i, j = move(i, j, size)
         else:
             j, i = move(j, i, size)

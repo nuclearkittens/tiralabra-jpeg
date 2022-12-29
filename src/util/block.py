@@ -33,9 +33,9 @@ def quantise(block, mode, quality, inverse=False):
     else:
         raise ValueError('mode has to be either chroma or luma')
 
-    k = 5000 / quality if quality < 50 else 200 - 2 * quality
-    q = qtable * k / 100
+    k = 5000/quality if quality < 50 else 200-2*quality
+    q = qtable*k/100
 
     if inverse:
-        return block * q
-    return block / q
+        return block*q
+    return block/q
