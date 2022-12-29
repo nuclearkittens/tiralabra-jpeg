@@ -53,8 +53,8 @@ class App:
         # fpath = 'src/data/test_img.tif'
         orig_im = RawImage(fpath=fpath)
 
-        self._io.write(f'\noriginal image: {fpath}')
         self._io.write(f'opened original image; compressing to {quality} % quality')
+        self._io.write(f'\noriginal image: {fpath}')
         # self._show_im(orig_im.im)
         self._io.write(f'image size: {orig_im.size} bytes')
         self._io.write(f'image shape: {orig_im.shape}')
@@ -64,7 +64,7 @@ class App:
         compressed = self._compressor.compress(fpath, quality=quality)
         stop = timer()
         time = stop - start
-        self._io.write(f'\ncompression took {time} seconds')
+        self._io.write('\ncompression took {:.4f} seconds'.format(time))
         self._io.write(f'encoded size: {compressed.size} bytes')
         ratio = compressed.size/orig_im.size
         self._io.write('compression ratio (compressed/orig): {:.2f}'.format(ratio))

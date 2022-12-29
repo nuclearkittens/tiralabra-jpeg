@@ -7,141 +7,105 @@ jpeg compression algorithm
 run the example (y/n)?: y
 
 running example...
-
-original image: src/data/test_img.tif
-
 opened original image; compressing to 70 % quality
 
+original image: src/data/test_img.tif
 image size: 908 bytes
-
 image shape: (16, 16, 3)
 
 encoding...
 
-compression took 0.020370317000924842 seconds
-
+compression took 0.0203 seconds
 encoded size: 264 bytes
-compression ratio (compressed/orig): 0.2907488986784141
-
-original image: src/data/test_img.tif
-
+compression ratio (compressed/orig): 0.29
 opened original image; compressing to 50 % quality
 
+original image: src/data/test_img.tif
 image size: 908 bytes
-
 image shape: (16, 16, 3)
 
 encoding...
 
-compression took 0.01609567899868125 seconds
-
+compression took 0.0161 seconds
 encoded size: 232 bytes
-compression ratio (compressed/orig): 0.2555066079295154
-
-original image: src/data/test_img.tif
-
+compression ratio (compressed/orig): 0.26
 opened original image; compressing to 10 % quality
 
+original image: src/data/test_img.tif
 image size: 908 bytes
-
 image shape: (16, 16, 3)
 
 encoding...
 
-compression took 0.014936194998881547 seconds
-
+compression took 0.0149 seconds
 encoded size: 128 bytes
-compression ratio (compressed/orig): 0.14096916299559473
-
-original image: src/data/rgb1-1200x1800.tif
-
+compression ratio (compressed/orig): 0.14
 opened original image; compressing to 70 % quality
 
+original image: src/data/rgb1-1200x1800.tif
 image size: 6629950 bytes
-
 image shape: (1800, 1200, 3)
 
 encoding...
 
-compression took 125.35022044099969 seconds
-
+compression took 126.1383 seconds
 encoded size: 2100632 bytes
-compression ratio (compressed/orig): 0.3168397951719093
-
-original image: src/data/rgb1-1200x1800.tif
-
+compression ratio (compressed/orig): 0.32
 opened original image; compressing to 50 % quality
 
+original image: src/data/rgb1-1200x1800.tif
 image size: 6629950 bytes
-
 image shape: (1800, 1200, 3)
 
 encoding...
 
-compression took 124.05122036600005 seconds
-
+compression took 126.4287 seconds
 encoded size: 1751308 bytes
-compression ratio (compressed/orig): 0.2641510116969208
-
-original image: src/data/rgb1-1200x1800.tif
-
+compression ratio (compressed/orig): 0.26
 opened original image; compressing to 10 % quality
 
+original image: src/data/rgb1-1200x1800.tif
 image size: 6629950 bytes
-
 image shape: (1800, 1200, 3)
 
 encoding...
 
-compression took 118.1121632300019 seconds
-
+compression took 119.9749 seconds
 encoded size: 384704 bytes
-compression ratio (compressed/orig): 0.05802517364384347
-
-original image: src/data/rgb2-1024x1024.tif
-
+compression ratio (compressed/orig): 0.06
 opened original image; compressing to 70 % quality
 
+original image: src/data/rgb2-1024x1024.tif
 image size: 3359506 bytes
-
 image shape: (1024, 1024, 3)
 
 encoding...
 
-compression took 60.395067002998985 seconds
-
+compression took 62.1849 seconds
 encoded size: 1014844 bytes
-compression ratio (compressed/orig): 0.3020813179080496
-
-original image: src/data/rgb2-1024x1024.tif
-
+compression ratio (compressed/orig): 0.30
 opened original image; compressing to 50 % quality
 
+original image: src/data/rgb2-1024x1024.tif
 image size: 3359506 bytes
-
 image shape: (1024, 1024, 3)
 
 encoding...
 
-compression took 60.515014724998764 seconds
-
+compression took 62.4720 seconds
 encoded size: 846080 bytes
-compression ratio (compressed/orig): 0.25184655124890387
-
-original image: src/data/rgb2-1024x1024.tif
-
+compression ratio (compressed/orig): 0.25
 opened original image; compressing to 10 % quality
 
+original image: src/data/rgb2-1024x1024.tif
 image size: 3359506 bytes
-
 image shape: (1024, 1024, 3)
 
 encoding...
 
-compression took 58.20207079099782 seconds
-
+compression took 61.1277 seconds
 encoded size: 197464 bytes
-compression ratio (compressed/orig): 0.05877768933884922
+compression ratio (compressed/orig): 0.06
 
 **example finished**
 
