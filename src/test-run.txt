@@ -18,8 +18,8 @@ encoding...
 compression took 0.0203 seconds
 encoded size: 264 bytes
 compression ratio (compressed/orig): 0.29
-opened original image; compressing to 50 % quality
 
+opened original image; compressing to 50 % quality
 original image: src/data/test_img.tif
 image size: 908 bytes
 image shape: (16, 16, 3)
@@ -29,8 +29,8 @@ encoding...
 compression took 0.0161 seconds
 encoded size: 232 bytes
 compression ratio (compressed/orig): 0.26
-opened original image; compressing to 10 % quality
 
+opened original image; compressing to 10 % quality
 original image: src/data/test_img.tif
 image size: 908 bytes
 image shape: (16, 16, 3)
@@ -40,8 +40,8 @@ encoding...
 compression took 0.0149 seconds
 encoded size: 128 bytes
 compression ratio (compressed/orig): 0.14
-opened original image; compressing to 70 % quality
 
+opened original image; compressing to 70 % quality
 original image: src/data/rgb1-1200x1800.tif
 image size: 6629950 bytes
 image shape: (1800, 1200, 3)
@@ -51,8 +51,8 @@ encoding...
 compression took 126.1383 seconds
 encoded size: 2100632 bytes
 compression ratio (compressed/orig): 0.32
-opened original image; compressing to 50 % quality
 
+opened original image; compressing to 50 % quality
 original image: src/data/rgb1-1200x1800.tif
 image size: 6629950 bytes
 image shape: (1800, 1200, 3)
@@ -62,8 +62,8 @@ encoding...
 compression took 126.4287 seconds
 encoded size: 1751308 bytes
 compression ratio (compressed/orig): 0.26
-opened original image; compressing to 10 % quality
 
+opened original image; compressing to 10 % quality
 original image: src/data/rgb1-1200x1800.tif
 image size: 6629950 bytes
 image shape: (1800, 1200, 3)
@@ -73,8 +73,8 @@ encoding...
 compression took 119.9749 seconds
 encoded size: 384704 bytes
 compression ratio (compressed/orig): 0.06
-opened original image; compressing to 70 % quality
 
+opened original image; compressing to 70 % quality
 original image: src/data/rgb2-1024x1024.tif
 image size: 3359506 bytes
 image shape: (1024, 1024, 3)
@@ -84,8 +84,8 @@ encoding...
 compression took 62.1849 seconds
 encoded size: 1014844 bytes
 compression ratio (compressed/orig): 0.30
-opened original image; compressing to 50 % quality
 
+opened original image; compressing to 50 % quality
 original image: src/data/rgb2-1024x1024.tif
 image size: 3359506 bytes
 image shape: (1024, 1024, 3)
@@ -95,8 +95,8 @@ encoding...
 compression took 62.4720 seconds
 encoded size: 846080 bytes
 compression ratio (compressed/orig): 0.25
-opened original image; compressing to 10 % quality
 
+opened original image; compressing to 10 % quality
 original image: src/data/rgb2-1024x1024.tif
 image size: 3359506 bytes
 image shape: (1024, 1024, 3)

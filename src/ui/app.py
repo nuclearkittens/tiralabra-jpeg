@@ -53,8 +53,8 @@ class App:
         # fpath = 'src/data/test_img.tif'
         orig_im = RawImage(fpath=fpath)
 
-        self._io.write(f'opened original image; compressing to {quality} % quality')
-        self._io.write(f'\noriginal image: {fpath}')
+        self._io.write(f'\nopened original image; compressing to {quality} % quality')
+        self._io.write(f'original image: {fpath}')
         # self._show_im(orig_im.im)
         self._io.write(f'image size: {orig_im.size} bytes')
         self._io.write(f'image shape: {orig_im.shape}')
