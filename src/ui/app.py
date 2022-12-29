@@ -54,10 +54,10 @@ class App:
         orig_im = RawImage(fpath=fpath)
 
         self._io.write(f'\noriginal image: {fpath}')
-        self._io.write(f'\nopened original image; compressing to {quality} % quality')
+        self._io.write(f'opened original image; compressing to {quality} % quality')
         # self._show_im(orig_im.im)
-        self._io.write(f'\nimage size: {orig_im.size} bytes')
-        self._io.write(f'\nimage shape: {orig_im.shape}')
+        self._io.write(f'image size: {orig_im.size} bytes')
+        self._io.write(f'image shape: {orig_im.shape}')
 
         self._io.write('\nencoding...')
         start = timer()
@@ -65,9 +65,9 @@ class App:
         stop = timer()
         time = stop - start
         self._io.write(f'\ncompression took {time} seconds')
-        self._io.write(f'\nencoded size: {compressed.size} bytes')
+        self._io.write(f'encoded size: {compressed.size} bytes')
         ratio = compressed.size/orig_im.size
-        self._io.write(f'compression ratio (compressed/orig): {ratio}')
+        self._io.write('compression ratio (compressed/orig): {:.2f}'.format(ratio))
 
         # self._io.write('\decoding image data...')
         # start = timer()
