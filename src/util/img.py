@@ -1,17 +1,22 @@
 '''Module for image utility functions.'''
-from collections import OrderedDict
 import numpy as np
+from PIL import Image
 
-from config import COLOUR_MATRIX, K, MINVAL, MAXVAL, Y, CB, CR
+from config import COLOUR_MATRIX, K, MINVAL, MAXVAL
+
+def create_random_im(fpath, size):
+    ch1 = np.random.randint(256, size=size, dtype=np.uint8)
+    ch2 = np.random.randint(256, size=size, dtype=np.uint8)
+    ch3 = np.random.randint(256, size=size, dtype=np.uint8)
+    arr = np.dstack((ch1, ch2, ch3))
+    im = Image.fromarray(arr)
+    im.save(fp=fpath, format='TIFF')
 
 def rgb2ycbcr(im):
     rgb = im.astype(np.float32)
     ycbcr = rgb.dot(COLOUR_MATRIX)
     ycbcr[:,:,[1,2]] += K
     return ycbcr.astype(np.uint8)
-    # return ycbcr
-    # y, cb, cr = get_channels(ycbcr)
-    # return OrderedDict(((Y, y), (CB, cb), (CR, cr)))
 
 def ycbcr2rgb(im):
     ycbcr = im.astype(np.float32)
@@ -20,8 +25,6 @@ def ycbcr2rgb(im):
     np.putmask(rgb, rgb > MAXVAL, MAXVAL)
     np.putmask(rgb, rgb < MINVAL, MINVAL)
     return rgb.astype(np.uint8)
-    # r, g, b = get_channels(rgb)
-    # return OrderedDict((('r', r), ('g', g), ('b', b)))
 
 def get_channels(im):
     ch1 = im[:,:,0]

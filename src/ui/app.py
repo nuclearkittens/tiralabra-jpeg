@@ -1,10 +1,12 @@
 '''Core functionality of the application.'''
 from timeit import default_timer as timer
+import os.path
 
 from config import TITLE, INSTRUCTIONS, YES, NO, QUIT
 from ui.console_io import ConsoleIO
 from entities.compressor import Compressor
 from entities.img import RawImage
+from util.img import create_random_im
 
 class App:
     '''Handle UI functionality for the command line application.'''
@@ -41,24 +43,42 @@ class App:
         self._running = False
 
     def example(self):
-        # ims = ['src/data/test_img.tif', 'src/data/rgb1-1200x1800.tif', 'src/data/rgb2-1024x1024.tif']
-        ims = ['src/data/test_img.tif']
-        qs = [70, 50, 10]
-        for im in ims:
-            for q in qs:
-                self._run_example(im, q)
+        def run(ims):
+            qs = [70, 50, 10]
+            for im in ims:
+                for q in qs:
+                    self._run_example(im, q)
+
+        fpaths = ['src/data/test-16x16.tif', 'src/data/test-128x128.tif', 'src/data/test-200x300.tif']
+        sizes = [(16, 16), (128, 128), (200, 300)]
+
+        for i, fp in enumerate(fpaths):
+            if not os.path.isfile(fp):
+                create_random_im(fp, sizes[i])
+
+        self._io.write('\nrunning example with randomly created images...')
+        run(fpaths)
+
+        prompt = '\nrun the example with actual images? (y/n)?: '
+        cmd = self._io.read(prompt)
+        if cmd.lower() == YES:
+            self._io.write('\nnote: this will take approx. 10 mins!')
+            ims = ['src/data/rgb1-1200x1800.tif', 'src/data/rgb2-1024x1024.tif']
+            run(ims)
+
         self._io.write('\n**example finished**')
 
     def _run_example(self, fpath, quality):
-        # quality = 50
-        # fpath = 'src/data/test_img.tif'
         orig_im = RawImage(fpath=fpath)
 
         self._io.write(f'\nopened original image; compressing to {quality} % quality')
         self._io.write(f'original image: {fpath}')
-        # self._show_im(orig_im.im)
         self._io.write(f'image size: {orig_im.size} bytes')
         self._io.write(f'image shape: {orig_im.shape}')
+
+        # show image only once, not during every run
+        if quality == 70:
+            self._show_im(orig_im.im)
 
         self._io.write('\nencoding...')
         start = timer()
@@ -69,19 +89,6 @@ class App:
         self._io.write(f'encoded size: {compressed.size} bytes')
         ratio = compressed.size/orig_im.size
         self._io.write('compression ratio (compressed/orig): {:.2f}'.format(ratio))
-
-        self._io.write('\decoding image data...')
-        start = timer()
-        im = self._compressor.decompress(compressed)
-        stop = timer()
-        time = stop - start
-        self._show_im(im)
-        self._io.write(f'\ndecompression took {time} seconds')
-        self._io.write(f'\image size: {im.size} bytes')
-        self._io.write(f'\nimage shape: {im.shape}')
-
-        #TODO: calc compression ratio
-
 
     def _show_im(self, im):
         cmd = self._io.read('show image (y/n)?: ')

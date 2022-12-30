@@ -14,8 +14,6 @@ def conv2d(im, kernel, stride=1, pad=0):
     return:
         matrix: convoluted image
     '''
-    #TODO: try different padding methods
-    # (or write a separate function for this)
     im = np.pad(im, [(pad, pad), (pad, pad)], mode='constant', constant_values=0)
     ker_h, ker_w = kernel.shape
     im_h, im_w = im.shape
@@ -107,8 +105,3 @@ def dct2d(arr):
         x[:,j] = dct(a[:,j])
 
     return x
-
-def idct2d(arr):
-    #TODO: write the algo for this and
-    #DO NOT use the scipy.fftpack function
-    return idct(idct(arr, norm='ortho', axis=0), norm='ortho', axis=1)

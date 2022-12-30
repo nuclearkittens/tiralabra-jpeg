@@ -1,3 +1,5 @@
+RUN #1
+
 jpeg compression algorithm
 
 *this application converts TIFF files to JPEGs*
@@ -112,6 +114,130 @@ compression ratio (compressed/orig): 0.06
 run the example (y/n)?: n
 
 only example available!
+
+run the example (y/n)?: q
+
+quitting app...
+
+RUN #2
+
+jpeg compression algorithm
+
+*this application applies the JPEG compression algorithm to TIFF files*
+*currently only the example conversion is available*
+*you can quit the application by pressing Q*
+
+run the example (y/n)?: y
+
+running example...
+
+running example with randomly created images...
+
+opened original image; compressing to 70 % quality
+original image: src/data/test-16x16.tif
+image size: 908 bytes
+image shape: (16, 16, 3)
+show image (y/n)?: n
+
+encoding...
+
+compression took 0.0298 seconds
+encoded size: 340 bytes
+compression ratio (compressed/orig): 0.37
+
+opened original image; compressing to 50 % quality
+original image: src/data/test-16x16.tif
+image size: 908 bytes
+image shape: (16, 16, 3)
+
+encoding...
+
+compression took 0.0184 seconds
+encoded size: 280 bytes
+compression ratio (compressed/orig): 0.31
+
+opened original image; compressing to 10 % quality
+original image: src/data/test-16x16.tif
+image size: 908 bytes
+image shape: (16, 16, 3)
+
+encoding...
+
+compression took 0.0159 seconds
+encoded size: 128 bytes
+compression ratio (compressed/orig): 0.14
+
+opened original image; compressing to 70 % quality
+original image: src/data/test-128x128.tif
+image size: 49292 bytes
+image shape: (128, 128, 3)
+show image (y/n)?: n
+
+encoding...
+
+compression took 0.9707 seconds
+encoded size: 16428 bytes
+compression ratio (compressed/orig): 0.33
+
+opened original image; compressing to 50 % quality
+original image: src/data/test-128x128.tif
+image size: 49292 bytes
+image shape: (128, 128, 3)
+
+encoding...
+
+compression took 0.9564 seconds
+encoded size: 12884 bytes
+compression ratio (compressed/orig): 0.26
+
+opened original image; compressing to 10 % quality
+original image: src/data/test-128x128.tif
+image size: 49292 bytes
+image shape: (128, 128, 3)
+
+encoding...
+
+compression took 0.8989 seconds
+encoded size: 2996 bytes
+compression ratio (compressed/orig): 0.06
+
+opened original image; compressing to 70 % quality
+original image: src/data/test-200x300.tif
+image size: 180140 bytes
+image shape: (200, 300, 3)
+show image (y/n)?: n
+
+encoding...
+
+compression took 3.6380 seconds
+encoded size: 62392 bytes
+compression ratio (compressed/orig): 0.35
+
+opened original image; compressing to 50 % quality
+original image: src/data/test-200x300.tif
+image size: 180140 bytes
+image shape: (200, 300, 3)
+
+encoding...
+
+compression took 3.5461 seconds
+encoded size: 48952 bytes
+compression ratio (compressed/orig): 0.27
+
+opened original image; compressing to 10 % quality
+original image: src/data/test-200x300.tif
+image size: 180140 bytes
+image shape: (200, 300, 3)
+
+encoding...
+
+compression took 3.3770 seconds
+encoded size: 10736 bytes
+compression ratio (compressed/orig): 0.06
+
+run the example with actual images? (y/n)?: n
+
+**example finished**
 
 run the example (y/n)?: q
 

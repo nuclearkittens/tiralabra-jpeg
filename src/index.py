@@ -1,5 +1,7 @@
 from ui.app import App
-from old.ex_v2 import example
+
+import numpy as np
+from PIL import Image
 
 def main():
     app = App()

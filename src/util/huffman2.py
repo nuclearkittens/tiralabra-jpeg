@@ -1,6 +1,8 @@
+'''Huffman encoding.'''
 from queue import PriorityQueue
 
 class Node:
+    '''Node of a Huffman tree.'''
     def __init__(self, val, freq, left, right):
         self._val = val
         self._freq = freq
@@ -9,44 +11,44 @@ class Node:
 
     @classmethod
     def new_leaf(self, val, freq):
+        '''Initialise a new leaf.'''
         return self(val, freq, None, None)
 
     @classmethod
     def new_node(self, left, right):
+        '''Initialise a new node.'''
         freq = left.freq+right.freq
         return self(None, freq, left, right)
 
     def is_leaf(self):
+        '''Check if node is a leaf.'''
         return self.val is not None
-
-    def __eq__(self, other):
-        self_props = (self.val, self.freq, self.left, self.right)
-        other_props = (other.val, other.freq, other.left, other.right)
-        return self_props == other_props
 
     def __lt__(self, other):
         return self.freq < other.freq
 
-    def __le__(self, other):
-        return self.freq < other.freq or self.freq == other.freq
-
     @property
     def val(self):
+        '''Return the value of the node.'''
         return self._val
 
     @property
     def freq(self):
+        '''Return the frequency of the node.'''
         return self._freq
 
     @property
     def left(self):
+        '''Return the left child of the node.'''
         return self._left
 
     @property
     def right(self):
+        '''Return the right child of the node.'''
         return self._right
 
 class HuffmanTree:
+    '''Class for a Huffman tree.'''
     def __init__(self, arr):
         pq = PriorityQueue()
 
@@ -63,10 +65,12 @@ class HuffmanTree:
 
     @property
     def binstr(self):
+        '''Return the binary string created from the tree values.'''
         return ''.join([val for val in self.huffman_table.values()])
 
     @property
     def huffman_table(self):
+        '''Return a dictionary with tree values and corresponding codewords.'''
         if len(self._huff_table) == 0:
             self._create_huffman_table()
         return self._huff_table

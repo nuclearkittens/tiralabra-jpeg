@@ -1,6 +1,5 @@
 '''Encoder module for JPEG compression.'''
 import util.huffman as huff
-from util.huffman2 import HuffmanTree
 import util.run_length as rle
 import util.zigzag as zz
 
@@ -54,28 +53,34 @@ class Encoder:
 
     @property
     def data(self):
+        '''Return chrominance and luminance data points.'''
         return self._data
 
     @property
     def mode(self):
+        '''Return the mode of the channel (luminance or chrominance).'''
         return self._mode
 
     @property
     def dc(self):
+        '''Calculate and return the DC values.'''
         if not self._dc:
             self._calc_dc()
         return self._dc
 
     @dc.setter
     def dc(self, val):
+        '''Set the DC values.'''
         self._dc = val
 
     @property
     def ac(self):
+        '''Calculate and return the AC values.'''
         if not self._ac:
             self._calc_ac()
         return self._ac
 
     @ac.setter
     def ac(self, val):
+        '''Set the AC values.'''
         self._ac = val
