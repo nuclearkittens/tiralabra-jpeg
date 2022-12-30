@@ -15,7 +15,7 @@ LUMA = frozenset({Y})
 CHROMA = frozenset({CB, CR})
 
 INSTRUCTIONS = (
-    '\n*this application converts TIFF files to JPEGs*'
+    '\n*this application applies the JPEG compression algorithm to TIFF files*'
     '\n*currently only the example conversion is available*'
     '\n*you can quit the application by pressing Q*'
 )

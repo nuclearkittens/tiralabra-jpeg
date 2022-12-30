@@ -43,7 +43,7 @@ class Compressor:
         '''Load image, convert from RGB to YCbCr and offset
         luma values.'''
         im = RawImage(fpath=fpath)
-        _, h, w = im.shape
+        h, w, _ = im.shape
         self.encoded[DIMS] = (h, w)
 
         ycbcr = img.rgb2ycbcr(im.im)
@@ -103,7 +103,7 @@ class Compressor:
 
         preprocessed = self._preprocess_compressed(bits, filler, slice_len)
         decoded = self._decode(preprocessed)
-        dequant = self._dequantise(decoded)
+        dequant = self._dequantise(decoded, quality, h, w)
 
         im = self._reshape(dequant, padding)
         return RawImage(im=im)

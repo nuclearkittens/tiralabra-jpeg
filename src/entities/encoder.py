@@ -1,5 +1,6 @@
 '''Encoder module for JPEG compression.'''
 import util.huffman as huff
+from util.huffman2 import HuffmanTree
 import util.run_length as rle
 import util.zigzag as zz
 
@@ -29,9 +30,6 @@ class Encoder:
         # for val in self.dc:
         #     s += huff.encode(val, self.mode)
         # res[DC] = s
-        for i, val in enumerate(self.dc):
-            if abs(val) >= 2048:
-                print(val, i)
         res[DC] = ''.join(huff.encode(val, self.mode) for val in self.dc)
 
         # s = ''

@@ -10,7 +10,10 @@ def slice_blocks(ch, blocksize=BLOCKSIZE):
 
 def combine_blocks(blocks, h, w):
     '''Reconstruct an image from N x M -sized blocks.'''
+    print(blocks.shape)
     _, n, m = blocks.shape
+    # print(blocks)
+    print(h, w, n, m)
     return blocks.reshape(
         h // n, -1, n, m
     ).swapaxes(1, 2).reshape(h, w)

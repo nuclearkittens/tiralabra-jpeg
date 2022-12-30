@@ -11,13 +11,15 @@ def encode_differential(data):
     difference between the current and previous
     element to the resulting sequence.
     '''
-    res = []
-    for i, elem in enumerate(data):
-        if i:
-            res.append(elem-data[i-1])
-        else:
-            res.append(elem)
-    return tuple(res)
+    # res = []
+    # for i, elem in enumerate(data):
+    #     if i:
+    #         res.append(elem-data[i-1])
+    #     else:
+    #         res.append(elem)
+    # return tuple(res)
+    res = (elem-data[i-1] if i else elem for i, elem in enumerate(data))
+    return res
 
 def decode_differential(data):
     '''Return decoded DC values by accumulating the
@@ -59,5 +61,5 @@ def decode_run_length(data):
     '''Decode run-length encoded data and return the
     original values.
     '''
-    res = (elem for l, k in data for elem in [0]*l+[k])
-    return tuple(res)[:-1]
+    res = tuple(elem for l, k in data for elem in [0]*l+[k])
+    return res[:-1]

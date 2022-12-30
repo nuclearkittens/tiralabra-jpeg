@@ -27,7 +27,7 @@ def forward(data):
         else:
             j, i = move(j, i, size)
 
-def backward(data, size, fill):
+def backward(data, size, fill=0):
     '''Reconstruct a matrix from an array.'''
     n = len(data)
     if not size:

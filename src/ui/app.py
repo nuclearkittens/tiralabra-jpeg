@@ -41,7 +41,8 @@ class App:
         self._running = False
 
     def example(self):
-        ims = ['src/data/test_img.tif', 'src/data/rgb1-1200x1800.tif', 'src/data/rgb2-1024x1024.tif']
+        # ims = ['src/data/test_img.tif', 'src/data/rgb1-1200x1800.tif', 'src/data/rgb2-1024x1024.tif']
+        ims = ['src/data/test_img.tif']
         qs = [70, 50, 10]
         for im in ims:
             for q in qs:
@@ -69,15 +70,15 @@ class App:
         ratio = compressed.size/orig_im.size
         self._io.write('compression ratio (compressed/orig): {:.2f}'.format(ratio))
 
-        # self._io.write('\decoding image data...')
-        # start = timer()
-        # im = self._compressor.decompress(compressed)
-        # stop = timer()
-        # time = stop - start
-        # self._show_im(im)
-        # self._io.write(f'\ndecompression took {time} seconds')
-        # self._io.write(f'\image size: {im.size} bytes')
-        # self._io.write(f'\nimage shape: {im.shape}')
+        self._io.write('\decoding image data...')
+        start = timer()
+        im = self._compressor.decompress(compressed)
+        stop = timer()
+        time = stop - start
+        self._show_im(im)
+        self._io.write(f'\ndecompression took {time} seconds')
+        self._io.write(f'\image size: {im.size} bytes')
+        self._io.write(f'\nimage shape: {im.shape}')
 
         #TODO: calc compression ratio
 
