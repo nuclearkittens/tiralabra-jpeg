@@ -22,7 +22,7 @@ def quantise(block, mode, quality, inverse=False):
     args:
         block: N x N square matrix
         mode: luma or chroma
-        quality: float: desired quality of compressed image
+        quality: int: desired quality of compressed image
         inverse: bool: perform dequantisation if True
     return:
         (de)quantised block
