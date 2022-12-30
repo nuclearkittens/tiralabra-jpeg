@@ -28,7 +28,7 @@ def encode(val, mode):
         raise ValueError(f'{val} not in table')
 
     # differential DC if val is an integer
-    if not isinstance(val, collections.Iterable):
+    if not isinstance(val, collections.abc.Iterable):
         if abs(val) >= DC_MAX:
             raise ValueError(f'invalid DC value: {val}')
         size, idx = get_index(HUFFMAN_CATEGORIES, val)
@@ -49,7 +49,3 @@ def encode(val, mode):
     # using the (non-zero) category value; concatenate into bin str
     size, idx = get_index(HUFFMAN_CATEGORIES, cat)
     return HUFFMAN_TABLES[AC][mode][(run, size)] + '{:0{pad}b}'.format(idx, pad=size)
-
-def decode(binstr, curr, mode):
-    '''Decode given binary string.'''
-    pass
