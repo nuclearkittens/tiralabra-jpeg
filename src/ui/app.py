@@ -44,7 +44,7 @@ class App:
 
     def example(self):
         def run(ims):
-            qs = [70, 50, 10]
+            qs = [90, 70, 50, 10]
             for im in ims:
                 for q in qs:
                     self._run_example(im, q)
@@ -62,7 +62,7 @@ class App:
         prompt = '\nrun the example with actual images? (y/n)?: '
         cmd = self._io.read(prompt)
         if cmd.lower() == YES:
-            self._io.write('\nnote: this will take approx. 10 mins!')
+            self._io.write('\nnote: this will take approx. 15 mins!')
             ims = ['src/data/rgb1-1200x1800.tif', 'src/data/rgb2-1024x1024.tif']
             run(ims)
 
@@ -77,7 +77,7 @@ class App:
         self._io.write(f'image shape: {orig_im.shape}')
 
         # show image only once, not during every run
-        if quality == 70:
+        if quality == 90:
             self._show_im(orig_im.im)
 
         self._io.write('\nencoding...')
