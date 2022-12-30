@@ -27,7 +27,7 @@ def decode_differential(data):
     return accumulate(data)
 
 def encode_run_length(data):
-    '''Iterate through grouped data points (lenght, key pairs)
+    '''Iterate through grouped data points (length, key pairs)
     and append the run-length encoded data to the resulting
     list.
     '''
