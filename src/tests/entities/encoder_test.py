@@ -7,7 +7,7 @@ def is_binstr(s):
     b = '01'
     for char in s:
         if char not in b:
-            return s
+            return False
     return True
 
 class TestEncoder(unittest.TestCase):
