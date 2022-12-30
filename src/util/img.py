@@ -2,7 +2,7 @@
 import numpy as np
 from PIL import Image
 
-from config import COLOUR_MATRIX, K, MINVAL, MAXVAL
+from config import COLOUR_MATRIX, K, MINVAL, MAXVAL, BLOCKSIZE
 
 def create_random_im(fpath, size):
     ch1 = np.random.randint(256, size=size, dtype=np.uint8)
@@ -47,10 +47,6 @@ def downsample(im):
     cr = ds(cr)
     return y, cb, cr
 
-def upsample(ch):
-    '''Reshape the colour channel to original dimensions.'''
-    return ch.repeat(1, axis=0).repeat(2, axis=1)
-
 def offset(ch, inverse=False):
     '''Offset pixel values from [0, 255] to [-128, 128].'''
     if inverse:
@@ -67,7 +63,7 @@ def pad(im, vpad, hpad):
         im = _horizontal_pad(im, hpad)
     return im
 
-def calc_padding(h, w, blocksize=8):
+def calc_padding(h, w, blocksize=BLOCKSIZE):
     '''Check whether image needs padding.'''
     pad = [0, 0]
     vpad = h % blocksize
