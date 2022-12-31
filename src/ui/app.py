@@ -59,10 +59,9 @@ class App:
         self._io.write('\nrunning example with randomly created images...')
         run(fpaths)
 
-        prompt = '\nrun the example with actual images? (y/n)?: '
+        prompt = '\nrun the example with actual images? note: this will take approx. 15 mins! (y/n)?: '
         cmd = self._io.read(prompt)
         if cmd.lower() == YES:
-            self._io.write('\nnote: this will take approx. 15 mins!')
             ims = ['src/data/rgb1-1200x1800.tif', 'src/data/rgb2-1024x1024.tif']
             run(ims)
 
