@@ -2,6 +2,7 @@
 
 from math import sqrt, cos, pi
 import numpy as np
+from scipy.fftpack import idct
 
 def conv2d(im, kernel, stride=1, pad=0):
     '''"2D convolution.
@@ -13,8 +14,6 @@ def conv2d(im, kernel, stride=1, pad=0):
     return:
         matrix: convoluted image
     '''
-    #TODO: try different padding methods
-    # (or write a separate function for this)
     im = np.pad(im, [(pad, pad), (pad, pad)], mode='constant', constant_values=0)
     ker_h, ker_w = kernel.shape
     im_h, im_w = im.shape
